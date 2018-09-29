@@ -14,9 +14,11 @@ bash <(curl -s https://raw.githubusercontent.com/XLNCs/UsefullScripts/master/sys
 
 - [`cpunamefix`](cpunamefix.sh) :`Set the correct or a custom CPU name in 'About This Mac`
 
-![cpunamefix](Images/cpunamefixsc.png)
-
 ```bash
 ###Usage
 bash <(curl -s https://raw.githubusercontent.com/XLNCs/UsefullScripts/master/cpunamefix.sh)
 ```
+
+![cpunamefix](Images/cpunamefixsc.png)
+
+
