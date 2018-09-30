@@ -21,4 +21,25 @@ bash <(curl -s https://raw.githubusercontent.com/XLNCs/UsefullScripts/master/cpu
 
 ![cpunamefix](Images/cpunamefixsc.png)
 
+----------
 
+- [`kerntool`](kerntool.sh) :`Rebuild kernel caches or install kernel on macOS`
+
+```bash
+###Usage
+curl -s -o ~/Desktop/kerntool.sh https://raw.githubusercontent.com/XLNCs/UsefullScripts/master/kerntool.sh && 
+chmod +x ~/Desktop/kerntool.sh
+
+Usage:  kerntool.sh [ -r | -k | -ke ]
+      ./kerntool.sh -r                                      :  Rebuilds caches only
+      ./kerntool.sh -k <kernel-file>                        :  Installs provided kernel then rebuilds caches
+      ./kerntool.sh -ke <kernel-file> <System.kext-file>    :  Installs provided kernel and system.kext then rebuilds caches
+
+Example:
+      ./kerntool.sh -k ~/Desktop/kernel
+      ./kerntool.sh -k ~/Desktop/kernel.test                   [ Use Bootflag : kcsuffix=test ]
+      ./kerntool.sh -ke ~/Desktop/kernel ~/Desktop/System.kext
+
+```
+
+![kerntool](Images/kerntoolsc.png)
