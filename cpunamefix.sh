@@ -3,11 +3,11 @@
 ##Info : Script to fix CPU name in 'About This Mac' on macOS system.
 ##Auth : XLNC
 ## Date : 29/09/2018
-
+# set -x
 DIRLOCATION="/System/Library/PrivateFrameworks/AppleSystemInfo.framework/Versions/A/Resources/"
 LIST=($(cd ${DIRLOCATION} && ls -1d */ | cut -d\/ -f1))
 REALCPUNAME="$(sysctl -n machdep.cpu.brand_string)"
-CURRENTCPUNAME="$(/usr/libexec/PlistBuddy -c "Print :UnknownCPUKind" ${DIRLOCATION}/English.lproj/AppleSystemInfo.strings)"
+CURRENTCPUNAME="$(sudo /usr/libexec/PlistBuddy -c "Print :UnknownCPUKind" ${DIRLOCATION}/English.lproj/AppleSystemInfo.strings)"
 ITL='\033[3m'
 BOLD='\033[1m'
 STD='\033[0m'
@@ -56,7 +56,9 @@ for ITEM in "${LIST[@]}"; do
 	}
 
 	bintoxml ${FILE}
-	sudo sed -i '' "s/\\<string\\>Unknown\\<\\/string\\>/\\<string\\>$CPUNAME\\<\\/string\\>/" ${FILE}
+	sudo /usr/libexec/PlistBuddy -c "Set :UnknownCPUKind ${CPUNAME}" ${FILE}
+	sudo /usr/libexec/PlistBuddy -c "Set :UnknownComputerModel ${CPUNAME}" ${FILE}
+	# sudo sed -i '' "s/\\<string\\>Unknown\\<\\/string\\>/\\<string\\>$CPUNAME\\<\\/string\\>/" ${FILE}
 	xmltobin ${FILE}
 
 done
