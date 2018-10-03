@@ -55,7 +55,7 @@ if [[ $# -lt 1 ]]; then
 fi
 
 case "$1" in
--r) rebuildcache ;;
+-r) rebuildCaches ;;
 -k)
 	KERNELFILE="$2"
 	kernelInstall
