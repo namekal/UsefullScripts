@@ -18,7 +18,7 @@ bash <(curl -s https://raw.githubusercontent.com/XLNCs/UsefullScripts/master/sys
 ###Usage
 bash <(curl -s https://raw.githubusercontent.com/XLNCs/UsefullScripts/master/cpunamefix.sh)
 ```
-
+``` NOTE : If your 'About This Mac' window still doesnt show the correct CPU name then set the CPU 'Type' to 'Unknown' in your clover config.plist and reboot.```
 ![cpunamefix](Images/cpunamefixsc.png)
 
 ----------
