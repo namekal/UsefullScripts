@@ -7,7 +7,7 @@
 DIRLOCATION="/System/Library/PrivateFrameworks/AppleSystemInfo.framework/Versions/A/Resources/"
 LIST=($(cd ${DIRLOCATION} && ls -1d */ | cut -d\/ -f1))
 REALCPUNAME="$(sysctl -n machdep.cpu.brand_string)"
-CURRENTCPUNAME="$(sudo /usr/libexec/PlistBuddy -c "Print :UnknownCPUKind" ${DIRLOCATION}/English.lproj/AppleSystemInfo.strings)"
+CURRENTCPUNAME="$(sudo /usr/libexec/PlistBuddy -c "Print :UnknownCPUKind" ${DIRLOCATION}/en.lproj/AppleSystemInfo.strings)"
 ITL='\033[3m'
 BOLD='\033[1m'
 STD='\033[0m'
@@ -36,8 +36,12 @@ while ! [[ ${REPLY} =~ ^[Yy|Nn]$ ]]; do
 	fi
 done
 
-for ITEM in "${LIST[@]}"; do
+if [[ $(sw_vers -productVersion | cut -d '.' -f2) == 15 ]]; then
+	echo "Mounting filesystem as R/W"
+	sudo mount -uw /
+fi
 
+for ITEM in "${LIST[@]}"; do
 	if [ ! -e "${DIRLOCATION}${ITEM}/AppleSystemInfo.strings.backup" ]; then
 		sudo cp -Rf ${DIRLOCATION}${ITEM}/AppleSystemInfo.strings ${DIRLOCATION}${ITEM}/AppleSystemInfo.strings.backup
 	fi
@@ -60,7 +64,7 @@ for ITEM in "${LIST[@]}"; do
 	sudo /usr/libexec/PlistBuddy -c "Set :UnknownComputerModel ${CPUNAME}" ${FILE}
 	# sudo sed -i '' "s/\\<string\\>Unknown\\<\\/string\\>/\\<string\\>$CPUNAME\\<\\/string\\>/" ${FILE}
 	xmltobin ${FILE}
-
 done
 
 echo -e "\nDone.\n"
+open /System/Library/CoreServices/Applications/About\ This\ Mac.app
