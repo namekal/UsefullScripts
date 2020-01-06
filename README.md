@@ -43,3 +43,15 @@ Example:
 ```
 
 ![kerntool](Images/kerntoolsc.png)
+
+----------
+
+- [`macGen`](macGen.sh) :`Generates SMBIOS Data`
+
+```bash
+###Usage
+bash <(curl -s https://raw.githubusercontent.com/XLNCs/UsefullScripts/master/macGen.sh)
+
+```
+
+![macGen](Images/macGensc.png)
