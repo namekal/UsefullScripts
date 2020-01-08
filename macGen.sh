@@ -9,8 +9,7 @@ macgen_zip="/tmp/macinfo-${version}-mac.zip"
 macgen_folder="/tmp/macinfo-${version}-mac"
 uuid="$(uuidgen)"
 
-cd /tmp
-curl -L0 $download_link
+curl -sL $download_link --output $macgen_zip
 unzip -o -a $macgen_zip -d $macgen_folder &>/dev/null
 
 printf '\033[8;25;90t' && clear
